@@ -37,7 +37,7 @@ trainer:
   amp_level: O2
 model:
   model_name: "distilbert-base-uncased"
-  learning_rate: 0.001
+  learning_rate: 1.0e-5
   num_labels: 20
 data:
   dataset_name: "tweet_eval"

@@ -14,13 +14,16 @@ compute:
     scale_down_seconds: 1800      
     use_spot: true 
     distributed: false
+    framework: lightning
     actions:
-      on_before_training_start:
+      on_before_training_start: # A hack to create custom environment
         - pip install poetry
-        - poetry env use system
-        - poetry config virtualenvs.create false && poetry install
+        - poetry env use system && poetry config virtualenvs.create false && poetry install
+
 hyper_params:
   settings:
     strategy: grid_search
   params:
     config: lightning.yaml
+    # model.learning_rate: 1.0e-4 # Can we overwrite lightning conf?
+
