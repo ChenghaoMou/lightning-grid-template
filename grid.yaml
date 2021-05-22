@@ -1,39 +1,26 @@
-# Main compute configuration.
 compute:
-  
-  # Add cloud configuration here.
   provider:
-  
-    credentials: cc-pcrjj           # Cloud key ID
-    region: us-east-1               # Cloud region, this is not surfaced from the UI or CLI
-    vendor: aws                     # Vendor, only aws
-  
-  # Training configuration.
+    credentials: cc-pcrjj
+    region: us-east-1
+    vendor: aws
   train:
-
-    cpus: 4                       # Number of CPUs
-    disk_size: 200                # Disk size
-    gpus: 1                       # Number of GPUs
-    instance: g3s.xlarge           # AWS instance type
-    max_nodes: 1                 # Max nodes to scale to
-    memory: null                  # RAM memory
-    nodes: 1                      # Nodes to start with
-    scale_down_seconds: 1800      # Second in between every scaling down evaluation
-    datastore_name: null          # Datastore name to use 
-    datastore_version: null       # Datastore version number
-    datastore_mount_dir: null     # Where to mount the datastore
-    use_spot: true                # If we should use spot instances
-    
-    environment:               
-      TOKENIZERS_PARALLELISM: "false"
-    
+    cpus: null                    
+    disk_size: 200                
+    gpus: 1                       
+    instance: g3s.xlarge          
+    max_nodes: 2                  
+    memory: null                  
+    nodes: 1                      
+    scale_down_seconds: 1800      
+    use_spot: true 
+    distributed: false
     actions:
-      on_image_build:
+      on_before_training_start:
         - pip install poetry
-        - poetry install
-
+        - poetry env use system
+        - poetry config virtualenvs.create false && poetry install
 hyper_params:
   settings:
-    strategy: random_search
+    strategy: grid_search
   params:
     config: lightning.yaml
