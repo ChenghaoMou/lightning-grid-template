@@ -1,6 +1,6 @@
 compute:
   provider:
-    credentials: cc-pcrjj
+    credentials: null
     region: us-east-1
     vendor: aws
   train:
