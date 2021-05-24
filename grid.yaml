@@ -1,8 +1,10 @@
 compute:
+  
   provider:
-    credentials: null
+    credentials: "Grid Cloud" # Change it to your own credentials, be sure to use the alias
     region: us-east-1
     vendor: aws
+  
   train:
     cpus: null                    
     disk_size: 200                

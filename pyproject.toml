@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lightning-grid-template"
-version = "0.0.1"
+version = "0.0.2"
 description = "A minimal template for pytorch-lightning and grid.ai"
 authors = ["Chenghao Mou <mouchenghao@gmail.com>"]
 license = "MIT"
