@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 # @Date         : 2021-05-22 14:50:34
 # @Author       : Chenghao Mou (mouchenghao@gmail.com)
+import comet_ml
+
 
 import torch
 import numpy as np
@@ -13,12 +15,15 @@ from torch.utils.data import DataLoader
 from typing import Optional
 from loguru import logger
 
+
 class Model(pl.LightningModule):
     def __init__(
         self, model_name: str, learning_rate: float = 1e-3, num_labels: int = 2
     ):
         super().__init__()
-        logger.debug(f"Model name: {model_name}, learning_rate: {learning_rate}, num_labels: {num_labels}")
+        logger.debug(
+            f"Model name: {model_name}, learning_rate: {learning_rate}, num_labels: {num_labels}"
+        )
         self.model = AutoModelForSequenceClassification.from_pretrained(
             model_name, num_labels=num_labels
         )
@@ -107,4 +112,4 @@ if __name__ == "__main__":
 
     from pytorch_lightning.utilities.cli import LightningCLI
 
-    cli = LightningCLI(Model, DataModule)
+    cli = LightningCLI(Model, DataModule, save_config_callback=None)

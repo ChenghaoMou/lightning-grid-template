@@ -13,6 +13,7 @@ lightning-grid = "^0.3.70"
 datasets = "^1.6.2"
 jsonargparse = {extras = ["signatures"], version = "^3.12.1"}
 loguru = "^0.5.3"
+comet-ml = "^3.12.2"
 
 [tool.poetry.dev-dependencies]
 

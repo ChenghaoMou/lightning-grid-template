@@ -18,7 +18,7 @@ compute:
     distributed: false
     framework: lightning
     actions:
-      on_before_training_start: # A hack to create custom environment
+      on_before_training_start:
         - pip install poetry
         - poetry env use system && poetry config virtualenvs.create false && poetry install
 
@@ -27,5 +27,7 @@ hyper_params:
     strategy: grid_search
   params:
     config: lightning.yaml
-    # model.learning_rate: 1.0e-4 # Can we overwrite lightning conf?
+    model.learning_rate: uniform(0.0001, 0.002, 2)
+    # trainer.logger: 
+    # - "{'class_path': 'pytorch_lightning.loggers.CometLogger', 'init_args': {'api_key': None, 'project_name': None, 'experiment_name': None, 'save_dir': None, 'rest_api_key': None, 'experiment_key': None, 'offline': False, 'prefix': ''}}"
 
